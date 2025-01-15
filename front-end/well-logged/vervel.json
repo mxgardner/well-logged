@@ -1,0 +1,27 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "api/main.py",
+        "use": "@vercel/python"
+      },
+      {
+        "src": "front-end/string-theory/package.json",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "build"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/(.*)",
+        "dest": "api/main.py"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "front-end/string-theory/build/$1"
+      }
+    ]
+  }
+  
